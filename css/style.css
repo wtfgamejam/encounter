@@ -14,9 +14,10 @@
 }
 
 .card {
-  display: none;
+  display: block;
   background: #aaa;
   border-radius: 5px;
+  border: solid 2px black;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   color: #fff;
   padding: 1px;
@@ -92,6 +93,7 @@
   background-size: 100% auto !important;
   background-position: center;
   background-repeat: no-repeat;
+  border: solid 2px #222;
 }
 
 .like {
@@ -108,6 +110,32 @@
 }
 
 .dislike {
+  border-radius: 5px;
+  padding: 5px 10px;
+  border: 2px solid red;
+  color: red;
+  text-transform: uppercase;
+  font-size: 15px;
+  position: absolute;
+  top: 50px;
+  left: 40px;
+  text-shadow: none;
+}
+
+.fight {
+  border-radius: 5px;
+  padding: 5px 10px;
+  border: 2px solid green;
+  color: green;
+  text-transform: uppercase;
+  font-size: 15px;
+  position: absolute;
+  top: 50px;
+  right: 40px;
+  text-shadow: none;
+}
+
+.run-away {
   border-radius: 5px;
   padding: 5px 10px;
   border: 2px solid red;

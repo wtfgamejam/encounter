@@ -32,12 +32,12 @@ $(document).ready(function() {
     }
   }
 
-  //build_deck();
+  build_deck();
 
   var swiperight = function() {
     $(this).addClass('rotate-left').delay(700).fadeOut(1);
     $('.card').find('.status').remove();
-    $(this).append('<div class="status like">Like!</div>');
+    $(this).append('<div class="status fight">Fight!</div>');
 
     if ($(this).is(':last-child')) {
       $('.card:nth-child(1)').removeClass('rotate-left rotate-right').fadeIn(300);
@@ -49,7 +49,7 @@ $(document).ready(function() {
   var swipeleft = function() {
     $(this).addClass('rotate-right').delay(700).fadeOut(1);
     $('.card').find('.status').remove();
-    $(this).append('<div class="status dislike">Dislike!</div>');
+    $(this).append('<div class="status run-away">Run Away!</div>');
 
     if ($(this).is(':last-child')) {
       $('.card:nth-child(1)').removeClass('rotate-left rotate-right').fadeIn(300);
