@@ -20,6 +20,24 @@ $(document).ready(function() {
   var monsters = load_data("monsters");
   var magic = load_data("magic");
   var armor = load_data("armor");
+  
+  function shuffle(){
+    $("#card-deck").each(function(){
+        var divs = $(this).find('.card');
+        console.log(divs);
+        for(var i = 0; i < divs.length; i++) $(divs[i]).remove();            
+        var i = divs.length;
+        if ( i == 0 ) return false;
+        while ( --i ) {
+           var j = Math.floor( Math.random() * ( i + 1 ) );
+           var tempi = divs[i];
+           var tempj = divs[j];
+           divs[i] = tempj;
+           divs[j] = tempi;
+         }
+        for(var i = 0; i < divs.length; i++) $(divs[i]).appendTo(this);
+    });                    
+  }
 
   /* CARD FUNCTIONS */
 
@@ -159,6 +177,7 @@ $(document).ready(function() {
   }
 
   build_deck();
+  shuffle();
 
   var swiperight = function() {
     $(this).addClass('rotate-left').delay(700).fadeOut(1);
