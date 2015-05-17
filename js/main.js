@@ -30,23 +30,32 @@ $(document).ready(function() {
 
   function add_avatar (image) { 
     var block = '<div class="avatar"'+
-    ' style="display: block;'+
-    ' background-image: url('+
-      image+
-    ')></div>';
-    console.log(block);
+                ' style="background-image: url(';
+                // 'assets/monster/';
+    block = block + image;
+    block = block +')"></div>';
     return block;
   }
 
   function add_monster (monster) {
     
-    var block = "";
-    block += '<div class="card" style="display: block;">';
-    block += add_avatar(monster.image);
-    block += add_stat("health",monster.health);
-    block += add_stat("attack",monster.attack);
-    block += add_stat("defense",monster.defense);
-    //$('#card-deck').append(block);
+    $('#card-deck').append('<div class="card"'+
+      ' id='+monster.name+
+      ' card-type="monster">');
+
+    console.log(add_avatar(monster.image));
+    
+    $('#'+monster.name).append(
+        add_avatar(monster.image));
+
+    $('#'+monster.name).append(
+        '<div class="stats-block">');
+
+    $('#'+monster.name).find(".stats-block").append(
+        add_stat("health",monster.health),
+        add_stat("attack",monster.attack),
+        add_stat("defense",monster.defense)
+      );
   }
 
   function build_deck () {
