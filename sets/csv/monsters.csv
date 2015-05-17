@@ -1,3 +1,5 @@
-"name","level","description","damage","health","url"
-"Swifticorn",1,"Taylor Swift as Unicorn",1,1,"image.jpg"
-"Door",1,"It's a door.",1,1,"image.jpg"
+"name","description","level","health","defense","attack","image"
+"Swifticorn","Taylor Swift as Unicorn",1,2,3,"monster/taylor.jpg"
+"Door","It's a door. Probably wish you had a key",3,1,0,"monster/door.jpg"
+"Goblin","He seems nice.",1,2,3,"monster/goblin.png"
+

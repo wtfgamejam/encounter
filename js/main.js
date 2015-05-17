@@ -32,7 +32,7 @@ $(document).ready(function() {
     }
   }
 
-  build_deck();
+  //build_deck();
 
   var swiperight = function() {
     $(this).addClass('rotate-left').delay(700).fadeOut(1);

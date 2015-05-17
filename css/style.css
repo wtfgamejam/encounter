@@ -15,7 +15,7 @@
 
 .card {
   display: none;
-  background: #ccc;
+  background: #aaa;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   color: #fff;
@@ -44,8 +44,46 @@
   cursor: w-resize;
 }
 
-.avatar {
+.card_name {
   background: red;
+  padding-top: 20px;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.stat {
+  display: block;
+  width: 280px;
+  font-size: 1.5em;
+}
+
+.stat_name {
+  display: inline-block;
+  width: 100px;
+  padding-left: 60px;
+  padding-right: 10px;
+  text-align: left;
+}
+
+.stat_value {
+  display: inline-block;
+  text-align: left;
+}
+
+.monster_stats {
+
+  width: 300px;
+  height: 130px;
+  display: block;
+  margin-top:  14px;
+  margin-left: 20px;
+  background-size: 100% auto !important;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.avatar {
+  background: green;
   width: 300px;
   height: 300px;
   display: block;
