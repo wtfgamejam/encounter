@@ -3,53 +3,47 @@
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.css">
-  <link rel="stylesheet" href="../css/style.css">
-  <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-  <script src="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
-  <script src="../js/main.js"></script>
+  <link rel="stylesheet" href="css/jquery.mobile-1.4.4.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/jquery-1.11.1.min.js"></script>
+  <script src="js/jquery.mobile-1.4.4.min.js"></script>
+  <script src="js/main.js"></script>
 </head>
 
 <body>
-  <div id="container">
-  <div id="items">
-    <div id="armor"></div>
-    <div id="weapon"></div>
-    <div id="magic"></div>
-  </div>
-    <div id="card-deck"></div>
-<!--     <div id="card-deck">
-      <div class="card" style="display: block;">
-        <div class="avatar" style="display: block; background-image: url(assets/monster/door.jpg)"></div>
+<div id="container">
+    <!-- Player Items -->
+    <div class="items">
+      <div class="item" id="armor">
+        <div class="item-label">armor</div>
       </div>
-
-      <div class="card" style="display: block;">
-        <div class="avatar" style="display: block; background-image: url(assets/monster/swiftacorn.jpg)"></div>
-        <div class="stat_block">
-          <div class="monster_stats">
-            <div class="stat">
-              <div class="stat_name">Health</div>
-              <div class="stat_value" name="health">10</div>
-            </div>
-
-            <div class="stat">
-              <div class="stat_name">Attack</div>
-              <div class="stat_value" name="health">2</div>
-            </div>
-
-            <div class="stat">
-              <div class="stat_name">Defense</div>
-              <div class="stat_value" name="health">2</div>
-            </div>
-
-          </div>
-        </div>
+      <div class="item" id="armor">
+        <div class="item-label">weapon</div>
       </div>
-      </div> -->
+      <div class="item" id="armor">
+        <div class="item-label">magic</div>
+      </div>
     </div>
-  </div>
-  </div>
+    <!-- Card Deck -->
+    <div id="card-deck"></div>
 
+    <!-- Player Stats -->
+    <div class="player-stats">
+      <div class="player-stat" id="health">
+        <div class="stat-label">health</div>
+      </div>
+      <div class="player-stat" id="health">
+        <div class="stat-label">attack</div>
+      </div>
+      <div class="player-stat" id="health">
+        <div class="stat-label">defense</div>
+      </div>
+    </div>
+
+    <!-- Loot Pile -->
+    <div class="loot-pile"></div>
+  
+</div> <!-- container -->
 </body>
 
 </html>

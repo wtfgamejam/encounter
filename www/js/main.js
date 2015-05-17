@@ -22,13 +22,22 @@ $(document).ready(function() {
 
   function add_stat (name, value) {
     var block = "<div class='stat'>" +
-      "<div class='stat_name'>"+name+"</div>" +
-      "<div class='stat_value'name='"+name+"'>"+value+"</div>"+
+      "<div class='stat-name'>"+name+"</div>" +
+      "<div class='stat-value' name='"+name+"'>"+value+"</div>"+
       "</div>";
     return block;
   }
 
   function add_avatar (image) { 
+    var block = '<div class="avatar"'+
+                ' style="background-image: url(';
+                // 'assets/monster/';
+    block = block + image;
+    block = block +')"></div>';
+    return block;
+  }
+
+  function add_desciption (div) { 
     var block = '<div class="avatar"'+
                 ' style="background-image: url(';
                 // 'assets/monster/';
@@ -43,15 +52,20 @@ $(document).ready(function() {
       ' id='+monster.name+
       ' card-type="monster">');
 
-    console.log(add_avatar(monster.image));
+    var monster_card = $('#'+monster.name);
+
+    monster_card.append(
+        '<div class="card-name">'+
+        monster.name+
+        '</div>');    
     
-    $('#'+monster.name).append(
+    monster_card.append(
         add_avatar(monster.image));
 
-    $('#'+monster.name).append(
+    monster_card.append(
         '<div class="stats-block">');
 
-    $('#'+monster.name).find(".stats-block").append(
+    monster_card.find(".stats-block").append(
         add_stat("health",monster.health),
         add_stat("attack",monster.attack),
         add_stat("defense",monster.defense)
@@ -69,25 +83,25 @@ $(document).ready(function() {
   var swiperight = function() {
     $(this).addClass('rotate-left').delay(700).fadeOut(1);
     $('.card').find('.status').remove();
-    $(this).append('<div class="status fight">Fight!</div>');
+    $(this).append('<div class="status run-away">Run Away!</div>');
 
-    if ($(this).is(':last-child')) {
-      $('.card:nth-child(1)').removeClass('rotate-left rotate-right').fadeIn(300);
-    } else {
-      $(this).next().removeClass('rotate-left rotate-right').fadeIn(400);
-    }
+    // if ($(this).is(':last-child')) {
+    //   $('.card:nth-child(1)').removeClass('rotate-left rotate-right').fadeIn(300);
+    // } else {
+    //   $(this).next().removeClass('rotate-left rotate-right').fadeIn(400);
+    // }
   };
 
   var swipeleft = function() {
     $(this).addClass('rotate-right').delay(700).fadeOut(1);
     $('.card').find('.status').remove();
-    $(this).append('<div class="status run-away">Run Away!</div>');
+    $(this).append('<div class="status fight">Fight!</div>');
 
-    if ($(this).is(':last-child')) {
-      $('.card:nth-child(1)').removeClass('rotate-left rotate-right').fadeIn(300);
-    } else {
-      $(this).next().removeClass('rotate-left rotate-right').fadeIn(400);
-    }
+    // if ($(this).is(':last-child')) {
+    //   $('.card:nth-child(1)').removeClass('rotate-left rotate-right').fadeIn(300);
+    // } else {
+    //   $(this).next().removeClass('rotate-left rotate-right').fadeIn(400);
+    // }
   };
 
   $(".card").on("swiperight", swiperight);

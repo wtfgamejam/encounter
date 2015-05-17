@@ -13,9 +13,61 @@
   user-select: none;
 }
 
-.card {
+.item-label {
+  text-transform: capitalize;
+  color: yellow;
+  background: blue;
+  display: inline-block;
+}
+
+.item {
+  background: green;
+  border-radius: 5px;
+  border: solid 2px black;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: #fff;
+  width: 80px;
+  height: 90px;
+  padding: 10px;
+  display: inline-block;
+}
+
+.items {
+  padding-top: 10px;
+  padding-left: 10px;
+  background: #a00;
   display: block;
-  background: #aaa;
+  border-radius: 5px;
+  border: solid 2px black;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: #fff;
+  width: 332px;
+  height: 100px;
+  top: 10px;
+  left: 50px;
+  position: absolute;
+}
+
+.player-stats {
+  padding-top: 10px;
+  padding-left: 10px;
+  background: #a00;
+  display: block;
+  border-radius: 5px;
+  border: solid 2px black;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: #fff;
+  width: 332px;
+  height: 40px;
+  top: 640px;
+  left: 50px;
+  position: absolute;
+}
+
+
+.card {
+  background: #a00;
+  display: block;
   border-radius: 5px;
   border: solid 2px black;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -23,7 +75,7 @@
   padding: 1px;
   width: 340px;
   height: 480px;
-  top: 50px;
+  top: 140px;
   left: 50px;
   position: absolute;
   cursor: hand;
@@ -45,39 +97,37 @@
   cursor: w-resize;
 }
 
-.card_name {
-  background: red;
-  padding-top: 20px;
+.card-name {
   font-size: 1.5em;
   text-align: center;
+  background: red;
 }
 
 .stat {
-  display: block;
-  width: 280px;
   font-size: 1.5em;
 }
 
-.stat_name {
+.stat-name {
   display: inline-block;
   width: 100px;
-  padding-left: 60px;
-  padding-right: 10px;
-  text-align: left;
+  text-align: right;
+  text-transform: capitalize;
 }
 
-.stat_value {
+.stat-value {
   display: inline-block;
+  width: 100px;
+  padding-left: 20px;
   text-align: left;
 }
 
-.monster_stats {
-
-  width: 300px;
-  height: 130px;
+.stats-block {
+  width: 240px;
+  height: 100px;
   display: block;
+  text-align: center;
   margin-top:  14px;
-  margin-left: 20px;
+  margin-left: 70px;
   background-size: 100% auto !important;
   background-position: center;
   background-repeat: no-repeat;
@@ -88,7 +138,7 @@
   width: 300px;
   height: 300px;
   display: block;
-  margin-top: 20px;
+  margin-top: 10px;
   margin-left: 20px;
   background-size: 100% auto !important;
   background-position: center;
