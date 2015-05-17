@@ -10,7 +10,6 @@ $(document).ready(function() {
         'dataType': "json",
         'success': function (data) {
             json = data;
-            console.log(data);
         }
     });
     return json;
@@ -21,14 +20,38 @@ $(document).ready(function() {
   var magic = load_data("magic");
   var armor = load_data("armor");
 
-  console.log(weapons);
-  console.log(monsters);
-  console.log(magic);
-  console.log(armor);
+  function add_stat (name, value) {
+    var block = "<div class='stat'>" +
+      "<div class='stat_name'>"+name+"</div>" +
+      "<div class='stat_value'name='"+name+"'>"+value+"</div>"+
+      "</div>";
+    return block;
+  }
 
-  var build_deck = function() {
+  function add_avatar (image) { 
+    var block = '<div class="avatar"'+
+    ' style="display: block;'+
+    ' background-image: url('+
+      image+
+    ')></div>';
+    console.log(block);
+    return block;
+  }
+
+  function add_monster (monster) {
+    
+    var block = "";
+    block += '<div class="card" style="display: block;">';
+    block += add_avatar(monster.image);
+    block += add_stat("health",monster.health);
+    block += add_stat("attack",monster.attack);
+    block += add_stat("defense",monster.defense);
+    //$('#card-deck').append(block);
+  }
+
+  function build_deck () {
     for (i in monsters){
-      console.log(monsters[i]);
+      add_monster(monsters[i]);
     }
   }
 
