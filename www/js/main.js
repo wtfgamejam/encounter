@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
-  var load_data = function(file) {
+  /* SETUP */
+  function load_data(file) {
     var json = null;
     url = "../sets/json/" + file + ".json";
     $.ajax({
@@ -20,6 +21,8 @@ $(document).ready(function() {
   var magic = load_data("magic");
   var armor = load_data("armor");
 
+  /* CARD FUNCTIONS */
+
   function add_stat(name, value) {
     var block = "<div class='stat'>" +
       "<div class='stat-name'>" + name + "</div>" +
@@ -37,44 +40,121 @@ $(document).ready(function() {
     return block;
   }
 
-  function add_desciption(div) {
-    var block = '<div class="avatar"' +
-      ' style="background-image: url(';
-    // 'assets/monster/';
-    block = block + image;
-    block = block + ')"></div>';
-    return block;
-  }
-
-  function add_monster(monster) {
-
+  function add_card_monster(monster) {
+    // Add a card to the deck named after the monster
     $('#card-deck').append('<div class="card"' +
       ' id=' + monster.name +
       ' card-type="monster">');
 
     var monster_card = $('#' + monster.name);
 
+    // Top Label
     monster_card.append(
       '<div class="card-name">' +
       monster.name +
       '</div>');
 
+    // Image
     monster_card.append(
       add_avatar(monster.image));
 
+    // Stats
     monster_card.append(
-      '<div class="stats-block">');
+      '<div class="card-stats">');
 
-    monster_card.find(".stats-block").append(
+    monster_card.find(".card-stats").append(
       add_stat("health", monster.health),
       add_stat("attack", monster.attack),
       add_stat("defense", monster.defense)
     );
+
+    // Description
+    monster_card.append(
+      '<div class="card-description">'+
+      monster.description+
+      '</div>');
+  }
+
+  function add_card_armor(armor) {
+    // Add a card to the deck named after the monster
+    $('#card-deck').append('<div class="card"' +
+      ' id=' + armor.id +
+      ' card-type="armor">');
+
+    var armor_card = $('#' + armor.id);
+
+    // Top Label
+    armor_card.append(
+      '<div class="card-name">' +
+      armor.name +
+      '</div>');
+
+    // Image
+    armor_card.append(
+      add_avatar(armor.image));
+
+    // Stats
+    armor_card.append(
+      '<div class="card-stats">');
+
+    armor_card.find(".card-stats").append(
+      add_stat("defense", armor.defense),
+      add_stat("durability", armor.durability),
+      add_stat("value", armor.value)
+    );
+
+    // Description
+    armor_card.append(
+      '<div class="card-description">'+
+      armor.description+
+      '</div>');
+  }
+
+  function add_card_weapon(weapon) {
+    console.log(weapon);
+    // Add a card to the deck named after the monster
+    $('#card-deck').append('<div class="card"' +
+      ' id=' + weapon.id +
+      ' card-type="armor">');
+
+    var weapon_card = $('#' + weapon.id);
+
+    // Top Label
+    weapon_card.append(
+      '<div class="card-name">' +
+      weapon.name +
+      '</div>');
+
+    // Image
+    weapon_card.append(
+      add_avatar(weapon.image));
+
+    // Stats
+    weapon_card.append(
+      '<div class="card-stats">');
+
+    weapon_card.find(".card-stats").append(
+      add_stat("attack", weapon.attack),
+      add_stat("durability", weapon.durability),
+      add_stat("value", weapon.value)
+    );
+
+    // Description
+    weapon_card.append(
+      '<div class="card-description">'+
+      weapon.description+
+      '</div>');
   }
 
   function build_deck() {
     for (i in monsters) {
-      add_monster(monsters[i]);
+      add_card_monster(monsters[i]);
+    }
+    for (i in armor) {
+      add_card_armor(armor[i]);
+    }
+    for (i in weapons) {
+      add_card_weapon(weapons[i]);
     }
   }
 

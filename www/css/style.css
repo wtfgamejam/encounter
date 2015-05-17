@@ -103,6 +103,13 @@
   cursor: hand;
 }
 
+.card-description {
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  padding: 8px;
+}
+
 .rotate-left {
   transform: rotate(30deg) scale(0.8);
   transition: 1s;
@@ -125,8 +132,20 @@
   background: red;
 }
 
+.card-stats {
+  width: 240px;
+  height: 80px;
+  display: block;
+  text-align: center;
+  margin-top: 14px;
+  margin-left: 70px;
+  background-size: 100% auto !important;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .stat {
-  font-size: 1.5em;
+  font-size: 1.2em;
 }
 
 .stat-name {
@@ -143,20 +162,9 @@
   text-align: left;
 }
 
-.stats-block {
-  width: 240px;
-  height: 100px;
-  display: block;
-  text-align: center;
-  margin-top: 14px;
-  margin-left: 70px;
-  background-size: 100% auto !important;
-  background-position: center;
-  background-repeat: no-repeat;
-}
 
 .avatar {
-  background: green;
+  background: white;
   width: 300px;
   height: 300px;
   display: block;
