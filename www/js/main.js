@@ -4,13 +4,13 @@ $(document).ready(function() {
     var json = null;
     url = "../sets/json/" + file + ".json";
     $.ajax({
-        'async': false,
-        'global': false,
-        'url': url,
-        'dataType': "json",
-        'success': function (data) {
-            json = data;
-        }
+      'async': false,
+      'global': false,
+      'url': url,
+      'dataType': "json",
+      'success': function(data) {
+        json = data;
+      }
     });
     return json;
   }
@@ -20,60 +20,60 @@ $(document).ready(function() {
   var magic = load_data("magic");
   var armor = load_data("armor");
 
-  function add_stat (name, value) {
+  function add_stat(name, value) {
     var block = "<div class='stat'>" +
-      "<div class='stat-name'>"+name+"</div>" +
-      "<div class='stat-value' name='"+name+"'>"+value+"</div>"+
+      "<div class='stat-name'>" + name + "</div>" +
+      "<div class='stat-value' name='" + name + "'>" + value + "</div>" +
       "</div>";
     return block;
   }
 
-  function add_avatar (image) { 
-    var block = '<div class="avatar"'+
-                ' style="background-image: url(';
-                // 'assets/monster/';
+  function add_avatar(image) {
+    var block = '<div class="avatar"' +
+      ' style="background-image: url(';
+    // 'assets/monster/';
     block = block + image;
-    block = block +')"></div>';
+    block = block + ')"></div>';
     return block;
   }
 
-  function add_desciption (div) { 
-    var block = '<div class="avatar"'+
-                ' style="background-image: url(';
-                // 'assets/monster/';
+  function add_desciption(div) {
+    var block = '<div class="avatar"' +
+      ' style="background-image: url(';
+    // 'assets/monster/';
     block = block + image;
-    block = block +')"></div>';
+    block = block + ')"></div>';
     return block;
   }
 
-  function add_monster (monster) {
-    
-    $('#card-deck').append('<div class="card"'+
-      ' id='+monster.name+
+  function add_monster(monster) {
+
+    $('#card-deck').append('<div class="card"' +
+      ' id=' + monster.name +
       ' card-type="monster">');
 
-    var monster_card = $('#'+monster.name);
+    var monster_card = $('#' + monster.name);
 
     monster_card.append(
-        '<div class="card-name">'+
-        monster.name+
-        '</div>');    
-    
-    monster_card.append(
-        add_avatar(monster.image));
+      '<div class="card-name">' +
+      monster.name +
+      '</div>');
 
     monster_card.append(
-        '<div class="stats-block">');
+      add_avatar(monster.image));
+
+    monster_card.append(
+      '<div class="stats-block">');
 
     monster_card.find(".stats-block").append(
-        add_stat("health",monster.health),
-        add_stat("attack",monster.attack),
-        add_stat("defense",monster.defense)
-      );
+      add_stat("health", monster.health),
+      add_stat("attack", monster.attack),
+      add_stat("defense", monster.defense)
+    );
   }
 
-  function build_deck () {
-    for (i in monsters){
+  function build_deck() {
+    for (i in monsters) {
       add_monster(monsters[i]);
     }
   }
