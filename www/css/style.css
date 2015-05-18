@@ -14,12 +14,9 @@
 }
 
 .card-deck {
-  background: green;
   display: block;
   border-radius: 5px;
-/*  border: solid 2px black;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-*/  color: #fff;
+  color: #fff;
   width: 344px;
   height: 484px;
   top: 120px;
@@ -28,7 +25,8 @@
   cursor: hand;
   z-index: 1;
   background-image: url('images/cardback.png');
-  background-size: 344px 484px;
+  background-position: center;
+  background-size: 304px 444px;
   background-repeat: no-repeat;
 }
 
@@ -113,14 +111,13 @@
   border: solid 2px black;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   color: #fff;
-  padding: 1px;
   width: 340px;
   height: 480px;
-/*  top: 120px;
-  left: 50px;*/
   position: absolute;
   cursor: hand;
   z-index: 2;
+  background-position: center;
+  background-size: 340px 480px;
 }
 
 .fight {
@@ -130,8 +127,13 @@
 .card-description {
   display: inline-block;
   text-align: center;
-  width: 100%;
-  padding: 8px;
+  margin-bottom: 4px;
+/*  background: rgba(0,0,0,0.7);*/
+
+  margin-top: 2px;
+  margin-left: 20px;
+  width: 300px;
+  font-style: italic;
 }
 
 .rotate-left {
@@ -153,19 +155,22 @@
 .card-name {
   font-size: 1.5em;
   text-align: center;
-  background: red;
+  width: 100%;
+  background: rgba(0,0,0,0.65);
 }
 
 .card-stats {
-  width: 240px;
+  background: rgba(0,0,0,0.75);
+  width: 294px;
   height: 80;
   display: block;
   text-align: center;
   margin-top: 14px;
-  margin-left: 70px;
+  margin-left: 20px;
   background-size: 100% auto !important;
   background-position: center;
   background-repeat: no-repeat;
+  border: 2px solid black;
 }
 
 .stat {
@@ -173,7 +178,7 @@
 }
 
 .avatar {
-  background: #999;
+  background: rgba(50,50,10,0.70);
   width: 300px;
   height: 300px;
   display: block;

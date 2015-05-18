@@ -58,6 +58,7 @@ $(document).ready(function() {
   }
 
   /* UPDATE FUNCTIONS */
+
   function update_player (player) {
     $('#player-health').html(player.health);
     $('#player-defense').html(player.defense);
@@ -117,6 +118,12 @@ $(document).ready(function() {
       ' card-type="monster">');
 
     var monster_card = $('#' + monster.name);
+
+    // Add background
+    console.log(monster.background);
+    if (monster.background) {
+      monster_card.css('background-image',"url('"+monster.background+"')");
+    }
 
     // Top Label
     monster_card.append(
@@ -188,6 +195,12 @@ $(document).ready(function() {
 
     var weapon_card = $('#' + weapon.id);
 
+    // Add background
+    console.log(weapon.background);
+    if (weapon.background) {
+      weapon_card.css('background-image',"url('"+weapon.background+"')");
+    }
+
     // Top Label
     weapon_card.append(
       '<div class="card-name">' +
@@ -251,10 +264,12 @@ $(document).ready(function() {
     }
   }
 
+
+  // SWIPES
+
   function card_swipe (card, next_card, swipe_left){
     
     var remove_card = false;
-    console.log(next_card);
     var card_type = $(card).attr('card-type');
 
     if(card_type == 'monster') {
@@ -263,20 +278,22 @@ $(document).ready(function() {
         $(card).addClass('animated tada fight');
         setTimeout(function() {
           $(card).removeClass('animated tada fight');
-        }, 1500);
+        }, 1000);
 
       } else {
         // Run Away
-        $(card).addClass('animated bounceOutRight');
+        $(card).addClass('animated zoomOutRight');
         setTimeout(function() {
-          $(card).removeClass('animated bounceOutRight');
-        }, 1500);
+          $(card).removeClass('animated zoomOutRight');
+        }, 1000);
         remove_card = true;
       }
     } else{
       if(swipe_left){ 
+        remove_card = true;
         console.log(card_type, "swipe_left");
       } else {
+        remove_card = true;
         console.log(card_type, "swipe_right");
       }
     }
@@ -286,59 +303,44 @@ $(document).ready(function() {
         game_over();
       } else {
         setTimeout(function() {
-          $('#card-deck .card').first().delay(1000).remove();
-          $(next_card).show();
+          $('#card-deck .card').first().hide().remove();
+          $(next_card).addClass('animated flipInY').show();
           setTimeout(function() {
-            
-          },500);
+            $(next_card).removeClass('animated flipInY').show();
+          },1000);
           update_hints();
-        }, 1500);
+        }, 500);
       }
     }
 
   }
 
-  // Animations
   var swiperight = function() {
     card_swipe(this,$('#card-deck .card').first().next(), false);
-    // $(this).addClass('rotate-left').delay(700).fadeOut(1);
-    // $('.card').find('.status').remove();
-    // $(this).append('<div class="status run-away">Run Away!</div>');
-    // if ($(this).is(':last-child')) {
-    //   game_over();
-    // } else {
-    //   setTimeout(function() {
-    //     $('#card-deck .card').first().remove();
-    //     $('#card-deck :first-child').show();
-    //     update_hints();
-    //   }, 600);
-    // }
   };
 
   var swipeleft = function() {
     card_swipe(this,$('#card-deck .card').first().next(), true);
-    // $('.card').find('.status').remove();
-    // $(this).append('<div class="status fight">Fight!</div>');
-    // if ($(this).is(':last-child')) {
-    //   game_over();
-    // } else{
-    //   setTimeout(function() {
-    //     $('#card-deck .card').first().remove();
-    //     $('#card-deck :first-child').show();
-    //     update_hints();
-    //   }, 600);
-    // }
   };
 
+  // PLAY GAME
   $("#play-game").on("click", play_game);
 
   function play_game () {
+    
     reset_player();
     build_deck();
     shuffle(); 
-    $('#card-deck :first-child').show();
+    
+    first_card = $('#card-deck :first-child');
+    first_card.addClass('animated flipInY').show();
+    
+    setTimeout(function (){
+        first_card.removeClass('animated flipInY');}, 1000);
+
     update_player(player);
     update_hints();
+
     $(".card").on("swiperight", swiperight);
     $(".card").on("swipeleft", swipeleft);
   }
