@@ -94,8 +94,8 @@ $(document).ready(function() {
     $('#'+type).append("<img src="+image+">")
   }
 
-  function game_over () {
-    window.alert('game')
+  function game_over (message) {
+    window.alert(message)
   }
 
   /* CARD CONSTRUCTION FUNCTIONS */
@@ -294,6 +294,8 @@ $(document).ready(function() {
       '</div>')
   }
 
+  /* BUILD DECK */
+
   function build_deck(card_deck) {
 
     // Nuke Deck
@@ -357,18 +359,26 @@ $(document).ready(function() {
       damage = Math.abs(parseInt(player.attack) - parseInt(card.defense))
     } 
     card.health = parseInt(card.health) - damage
+    if (card.health < 0) { card.health = 0 }
+
     card_deck[card_id] = card
+
+    // Update card
     card_div = $('#'+card.id+' #health').html(card.health)
 
-    if (card.health < 1 ) {
-      return true
+    // Card is dead
+    if (card.health < 1 ) { return true }
+
+    // Card lives. Attacks.
+    if (parseInt(card.attack) > parseInt(player.defense)) {
+      damage = Math.abs(parseInt(card.attack) - parseInt(player.defense))
+      player.health = parseInt(player.health) - damage
+      if( player.health < 0 ) { player.health = 0 }
+      update_player(player)
     }
 
     if (parseInt(player.health) < 1) {
-      game_over()
-    }
-    if (card.health > 0){
-      // attack player 
+      game_over('You died!')
     }
 
   }
@@ -399,7 +409,7 @@ $(document).ready(function() {
       setTimeout(function() {
         if ($(card).is(':last-child')) {
           $('#card-deck .card').first().hide().remove()
-          game_over()
+          game_over("You escaped the dungeon!\n Loot:"+ player.loot)
         } else {
           $('#card-deck .card').first().hide().remove()
           card_animation(next_card, 'flipInX')
@@ -459,6 +469,10 @@ $(document).ready(function() {
 
   function play_game () {
     
+    set_equipment_image('','armor')
+    set_equipment_image('','weapon')
+    set_equipment_image('','magic')
+
     reset_player(player)
     build_deck(card_deck)
     shuffle(card_deck)

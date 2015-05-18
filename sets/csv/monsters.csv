@@ -1,4 +1,4 @@
 "id","name","description","level","health","defense","attack","image","background"
-"monster-1","Swifticorn","She must be a Swiftie!",1,3,2,3,"assets/monster/swiftacorn.png","assets/card_background/red_pillars.png"
+"monster-1","Swifticorn","She must be a Swiftie!",1,3,2,6,"assets/monster/swiftacorn.png","assets/card_background/red_pillars.png"
 "monster-2","Door","You wish you had a key",3,3,0,0,"assets/monster/door.png","assets/card_background/red_pillars.png"
-"monster-3","Goblin","He seems nice.",1,2,1,4,"assets/monster/goblin.png","assets/card_background/red_pillars.png"
+"monster-3","Goblin","He seems nice.",1,2,1,3,"assets/monster/goblin.png","assets/card_background/red_pillars.png"
