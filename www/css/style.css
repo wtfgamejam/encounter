@@ -13,6 +13,25 @@
   user-select: none;
 }
 
+.card-deck {
+  background: green;
+  display: block;
+  border-radius: 5px;
+/*  border: solid 2px black;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+*/  color: #fff;
+  width: 344px;
+  height: 484px;
+  top: 120px;
+  left: 50px;
+  position: absolute;
+  cursor: hand;
+  z-index: 1;
+  background-image: url('images/cardback.png');
+  background-size: 344px 484px;
+  background-repeat: no-repeat;
+}
+
 .item-label {
   text-transform: capitalize;
   color: yellow;
@@ -53,7 +72,7 @@
   color: #fff;
   width: 332px;
   height: 60px;
-  top: 610px;
+  top: 640px;
   left: 50px;
   position: absolute;
   display: inline-block;
@@ -89,7 +108,7 @@
 
 .card {
   background: #a00;
-  display: block;
+  display: none;
   border-radius: 5px;
   border: solid 2px black;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -97,10 +116,15 @@
   padding: 1px;
   width: 340px;
   height: 480px;
-  top: 120px;
-  left: 50px;
+/*  top: 120px;
+  left: 50px;*/
   position: absolute;
   cursor: hand;
+  z-index: 2;
+}
+
+.fight {
+  box-shadow: 1px 1px 50px 0px black;
 }
 
 .card-description {
@@ -187,7 +211,23 @@
   text-shadow: none;
 }
 
-.fight {
+.hints {
+  top: 608px;
+  left: 50px;
+  position: absolute;
+  background: red;
+}
+
+.hint {
+  display: inline-block;
+  width: 170px;
+  text-align: center;
+  height: 30px;
+  vertical-align: middle;
+  font-size: 1.2em;
+}
+
+.xfight {
   border-radius: 5px;
   padding: 5px 10px;
   border: 2px solid green;
@@ -200,7 +240,7 @@
   text-shadow: none;
 }
 
-.run-away {
+.xrun-away {
   border-radius: 5px;
   padding: 5px 10px;
   border: 2px solid red;
