@@ -57,6 +57,7 @@ $(document).ready(function() {
     }
   }
 
+  /* UPDATE FUNCTIONS */
   function update_player (player) {
     $('#player-health').html(player.health);
     $('#player-defense').html(player.defense);
@@ -64,11 +65,33 @@ $(document).ready(function() {
     $('#player-loot').html(player.loot);
   }
 
+  function update_hints () {
+    var hint_left = "Equip";
+    var hint_right = "Loot";
+    var card_type = $("#card-deck .card").first().attr('card-type');
+
+    switch(card_type) {
+      case "monster":
+        hint_left = "Fight!";
+        hint_right = "Run Away!";
+        break;
+      case "weapon":
+        break;
+      case "armor":
+        break;
+      default:
+        hint_left = "Keep";
+    }
+    $('#hint-left').html(hint_left);
+    $('#hint-right').html(hint_right);
+
+  }
+
   function game_over () {
     window.alert('game');
   }
 
-  /* CARD FUNCTIONS */
+  /* CARD CONSTRUCTION FUNCTIONS */
 
   function add_stat(name, value) {
     var block = "<div class='stat'>" +
@@ -208,23 +231,103 @@ $(document).ready(function() {
     }
   }
 
+  function get_card_action(card, swipe_right) {
+    var card_type = $("#card-deck .card").first().attr('card-type');
+
+    if(swipe_right){
+      switch(card_type) {
+        case "monster":
+          return 'fight';
+        default:
+          return 'run';
+      }
+    }else{
+      switch(card_type) {
+        case "monster":
+          return 'keep';
+        default:
+          return 'loot';
+      }
+    }
+  }
+
+  function card_swipe (card, next_card, swipe_left){
+    
+    var remove_card = false;
+    console.log(next_card);
+    var card_type = $(card).attr('card-type');
+
+    if(card_type == 'monster') {
+      if(swipe_left){ 
+        // Fight
+        $(card).addClass('animated tada fight');
+        setTimeout(function() {
+          $(card).removeClass('animated tada fight');
+        }, 1500);
+
+      } else {
+        // Run Away
+        $(card).addClass('animated bounceOutRight');
+        setTimeout(function() {
+          $(card).removeClass('animated bounceOutRight');
+        }, 1500);
+        remove_card = true;
+      }
+    } else{
+      if(swipe_left){ 
+        console.log(card_type, "swipe_left");
+      } else {
+        console.log(card_type, "swipe_right");
+      }
+    }
+
+    if(remove_card){
+      if ($(this).is(':last-child')) {
+        game_over();
+      } else {
+        setTimeout(function() {
+          $('#card-deck .card').first().delay(1000).remove();
+          $(next_card).show();
+          setTimeout(function() {
+            
+          },500);
+          update_hints();
+        }, 1500);
+      }
+    }
+
+  }
+
   // Animations
   var swiperight = function() {
-    $(this).addClass('rotate-left').delay(700).fadeOut(1);
-    $('.card').find('.status').remove();
-    $(this).append('<div class="status run-away">Run Away!</div>');
-    if ($(this).is(':first-child')) {
-      game_over();
-    }
+    card_swipe(this,$('#card-deck .card').first().next(), false);
+    // $(this).addClass('rotate-left').delay(700).fadeOut(1);
+    // $('.card').find('.status').remove();
+    // $(this).append('<div class="status run-away">Run Away!</div>');
+    // if ($(this).is(':last-child')) {
+    //   game_over();
+    // } else {
+    //   setTimeout(function() {
+    //     $('#card-deck .card').first().remove();
+    //     $('#card-deck :first-child').show();
+    //     update_hints();
+    //   }, 600);
+    // }
   };
 
   var swipeleft = function() {
-    $(this).addClass('rotate-right').delay(700).fadeOut(1);
-    $('.card').find('.status').remove();
-    $(this).append('<div class="status fight">Fight!</div>');
-    if ($(this).is(':first-child')) {
-      game_over();
-    }
+    card_swipe(this,$('#card-deck .card').first().next(), true);
+    // $('.card').find('.status').remove();
+    // $(this).append('<div class="status fight">Fight!</div>');
+    // if ($(this).is(':last-child')) {
+    //   game_over();
+    // } else{
+    //   setTimeout(function() {
+    //     $('#card-deck .card').first().remove();
+    //     $('#card-deck :first-child').show();
+    //     update_hints();
+    //   }, 600);
+    // }
   };
 
   $("#play-game").on("click", play_game);
@@ -233,7 +336,9 @@ $(document).ready(function() {
     reset_player();
     build_deck();
     shuffle(); 
+    $('#card-deck :first-child').show();
     update_player(player);
+    update_hints();
     $(".card").on("swiperight", swiperight);
     $(".card").on("swipeleft", swipeleft);
   }

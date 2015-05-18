@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/jquery.mobile-1.4.4.min.css">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animate.css">
   <script src="js/jquery-1.11.1.min.js"></script>
   <script src="js/jquery.mobile-1.4.4.min.js"></script>
   <script src="js/main.js"></script>
@@ -25,20 +26,23 @@
       </div>
     </div>
     <!-- Card Deck -->
-    <div id="card-deck"><div class="card"></div></div>
+    <div id="card-deck" class="card-deck"><div class="card"></div></div>
 
     <!-- Player Stats -->
     <div class="player-stats">
-      <div class="player-stat-label">Health</div>
-      <div class="player-stat" id="player-health"></div>
       <div class="player-stat-label">Attack</div>
       <div class="player-stat" id="player-attack"></div>
       <div class="player-stat-label">Defense</div>
       <div class="player-stat" id="player-defense"></div>
+      <div class="player-stat-label">Health</div>
+      <div class="player-stat" id="player-health"></div>
       <div class="player-stat-label">Loot</div>
       <div class="player-stat" id="player-loot"></div>
     </div>
-
+    <div class="hints">
+      <div class="hint" id="hint-left">Hint Left</div>
+      <div class="hint" id="hint-right">Hint Right</div>
+    </div>
   </div>
   <!-- container -->
   <input type="submit" value="Play Game" id="play-game">
