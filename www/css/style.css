@@ -11,24 +11,28 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  background-image: url('images/background.jpg');
+  background-image: url('images/background.png');
 }
 
 .card-deck {
   display: block;
   border-radius: 20px;
   color: #fff;
-  width: 344px;
-  height: 484px;
+  width: 340px;
+  height: 480px;
   top: 120px;
   left: 50px;
   position: absolute;
   cursor: hand;
-  z-index: 1;
-  background-image: url('images/cardback.png');
+  z-index: 0;
+  background: rgba(0,0,0,.5);
+  /*background-image: url('images/cardback.png');*/
   background-position: center;
-  background-size: 304px 444px;
+  background-size: 300px 440px;
   background-repeat: no-repeat;
+  border-radius: 5px;
+  border: solid 2px black;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 
