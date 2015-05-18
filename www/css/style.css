@@ -1,8 +1,8 @@
 #container {
-  width: 500px;
+  width: 450px;
   margin: auto !important;
   display: block;
-  height: 500px;
+  height: 700px;
   position: relative;
   list-style-type: none;
   -webkit-touch-callout: none;
@@ -52,25 +52,8 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   color: #fff;
   width: 332px;
-  height: 40px;
+  height: 60px;
   top: 610px;
-  left: 50px;
-  position: absolute;
-  display: inline-block;
-}
-
-.loot-pile {
-  padding-top: 10px;
-  padding-left: 10px;
-  background: #a00;
-  display: block;
-  border-radius: 5px;
-  border: solid 2px black;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  color: #fff;
-  width: 332px;
-  height: 40px;
-  top: 670px;
   left: 50px;
   position: absolute;
   display: inline-block;
@@ -79,12 +62,29 @@
 .player-stat-label {
   background: green;
   display: inline-block;
+  width: 80px;
+  text-align: right;
 }
 
 .player-stat {
   background: purple;
-  width: 40px;
+  width: 60px;
   display: inline-block;
+  padding-left: 10px;
+}
+
+.stat-name {
+  display: inline-block;
+  width: 100px;
+  text-align: right;
+  text-transform: capitalize;
+}
+
+.stat-value {
+  display: inline-block;
+  width: 100px;
+  padding-left: 20px;
+  text-align: left;
 }
 
 .card {
@@ -134,7 +134,7 @@
 
 .card-stats {
   width: 240px;
-  height: 80px;
+  height: 80;
   display: block;
   text-align: center;
   margin-top: 14px;
@@ -148,23 +148,8 @@
   font-size: 1.2em;
 }
 
-.stat-name {
-  display: inline-block;
-  width: 100px;
-  text-align: right;
-  text-transform: capitalize;
-}
-
-.stat-value {
-  display: inline-block;
-  width: 100px;
-  padding-left: 20px;
-  text-align: left;
-}
-
-
 .avatar {
-  background: white;
+  background: #999;
   width: 300px;
   height: 300px;
   display: block;

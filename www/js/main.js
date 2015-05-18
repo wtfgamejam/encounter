@@ -16,6 +16,13 @@ $(document).ready(function() {
     return json;
   }
 
+  var player = {
+    "health"  : 10,
+    "defense" : 1,
+    "attack"  : 1,
+    "loot"    : 0
+  }
+
   var weapons = load_data("weapons");
   var monsters = load_data("monsters");
   var magic = load_data("magic");
@@ -24,7 +31,7 @@ $(document).ready(function() {
   function shuffle(){
     $("#card-deck").each(function(){
         var divs = $(this).find('.card');
-        console.log(divs);
+
         for(var i = 0; i < divs.length; i++) $(divs[i]).remove();            
         var i = divs.length;
         if ( i == 0 ) return false;
@@ -37,6 +44,28 @@ $(document).ready(function() {
          }
         for(var i = 0; i < divs.length; i++) $(divs[i]).appendTo(this);
     });                    
+  }
+
+  /* PLAYER FUNCTIONS */
+
+  function reset_player (player) {
+    player = {
+      "health"  : 11,
+      "defense" : 2,
+      "attack"  : 2,
+      "loot"    : 1
+    }
+  }
+
+  function update_player (player) {
+    $('#player-health').html(player.health);
+    $('#player-defense').html(player.defense);
+    $('#player-attack').html(player.attack);
+    $('#player-loot').html(player.loot);
+  }
+
+  function game_over () {
+    window.alert('game');
   }
 
   /* CARD FUNCTIONS */
@@ -129,7 +158,6 @@ $(document).ready(function() {
   }
 
   function add_card_weapon(weapon) {
-    console.log(weapon);
     // Add a card to the deck named after the monster
     $('#card-deck').append('<div class="card"' +
       ' id=' + weapon.id +
@@ -165,6 +193,10 @@ $(document).ready(function() {
   }
 
   function build_deck() {
+    $('.card').each(function () {
+      $(this).remove();
+    });
+
     for (i in monsters) {
       add_card_monster(monsters[i]);
     }
@@ -176,34 +208,34 @@ $(document).ready(function() {
     }
   }
 
-  build_deck();
-  shuffle();
-
+  // Animations
   var swiperight = function() {
     $(this).addClass('rotate-left').delay(700).fadeOut(1);
     $('.card').find('.status').remove();
     $(this).append('<div class="status run-away">Run Away!</div>');
-
-    // if ($(this).is(':last-child')) {
-    //   $('.card:nth-child(1)').removeClass('rotate-left rotate-right').fadeIn(300);
-    // } else {
-    //   $(this).next().removeClass('rotate-left rotate-right').fadeIn(400);
-    // }
+    if ($(this).is(':first-child')) {
+      game_over();
+    }
   };
 
   var swipeleft = function() {
     $(this).addClass('rotate-right').delay(700).fadeOut(1);
     $('.card').find('.status').remove();
     $(this).append('<div class="status fight">Fight!</div>');
-
-    // if ($(this).is(':last-child')) {
-    //   $('.card:nth-child(1)').removeClass('rotate-left rotate-right').fadeIn(300);
-    // } else {
-    //   $(this).next().removeClass('rotate-left rotate-right').fadeIn(400);
-    // }
+    if ($(this).is(':first-child')) {
+      game_over();
+    }
   };
 
-  $(".card").on("swiperight", swiperight);
-  $(".card").on("swipeleft", swipeleft);
+  $("#play-game").on("click", play_game);
+
+  function play_game () {
+    reset_player();
+    build_deck();
+    shuffle(); 
+    update_player(player);
+    $(".card").on("swiperight", swiperight);
+    $(".card").on("swipeleft", swipeleft);
+  }
 
 });
