@@ -124,6 +124,13 @@
   box-shadow: 1px 1px 50px 0px black;
 }
 
+.item img {
+  width: 65px;
+  height: 65px;
+  margin-left: 5px;
+  float: left;
+}
+
 .card-description {
   display: inline-block;
   text-align: center;

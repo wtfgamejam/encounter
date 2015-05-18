@@ -29,6 +29,7 @@ $(document).ready(function() {
   var monsters = load_data("monsters")
   var magic = load_data("magic")
   var armor = load_data("armor")
+  var card_deck = {}
   
   function shuffle(){
     $("#card-deck").each(function(){
@@ -113,7 +114,14 @@ $(document).ready(function() {
     return block
   }
 
+  function card_deck_add(card){
+    card_deck[card.id] = card;
+  }
+
   function add_card_monster(monster) {
+
+    card_deck_add(monster)
+
     // Add a card to the deck named after the monster
     $('#card-deck').append('<div class="card"' +
       ' id=' + monster.name +
@@ -122,7 +130,6 @@ $(document).ready(function() {
     var monster_card = $('#' + monster.name)
 
     // Add background
-    console.log(monster.background);
     if (monster.background) {
       monster_card.css('background-image',"url('"+monster.background+"')")
     }
@@ -155,12 +162,20 @@ $(document).ready(function() {
   }
 
   function add_card_armor(armor) {
+
+    card_deck_add(armor)
+
     // Add a card to the deck named after the monster
     $('#card-deck').append('<div class="card"' +
       ' id=' + armor.id +
       ' card-type="armor">')
 
     var armor_card = $('#' + armor.id)
+
+    // Add background
+    if (armor.background) {
+      armor_card.css('background-image',"url('"+armor.background+"')")
+    }
 
     // Top Label
     armor_card.append(
@@ -190,6 +205,9 @@ $(document).ready(function() {
   }
 
   function add_card_weapon(weapon) {
+
+    card_deck_add(weapon)
+
     // Add a card to the deck named after the monster
     $('#card-deck').append('<div class="card"' +
       ' id=' + weapon.id +
@@ -198,7 +216,6 @@ $(document).ready(function() {
     var weapon_card = $('#' + weapon.id)
 
     // Add background
-    console.log(weapon.background);
     if (weapon.background) {
       weapon_card.css('background-image',"url('"+weapon.background+"')")
     }
@@ -246,6 +263,9 @@ $(document).ready(function() {
     }
   }
 
+
+  /* CARD FUNCTIONS */
+
   function get_card_action(card, swipe_right) {
     var card_type = $("#card-deck .card")
                       .first()
@@ -256,7 +276,7 @@ $(document).ready(function() {
         case "monster":
           return 'fight'
         default:
-          return 'run';
+          return 'run'
       }
     }else{
       switch(card_type) {
@@ -268,34 +288,35 @@ $(document).ready(function() {
     }
   }
 
+  function get_card_value(card_id){
+    return card_deck[card_id].value
+  }
 
-  // SWIPES
 
   function card_swipe (card, next_card, swipe_left){
     
-    var remove_card = false
+    var remove_card = true
     var card_type = $(card).attr('card-type')
 
     if(card_type == 'monster') {
       if(swipe_left){ 
+        // Fight
         card_animation(card, 'tada fight')
+        remove_card = false
       } else {
         // Run Away
         card_animation(card, 'zoomOutRight')
-        remove_card = true
       }
     } else{
       if(swipe_left){ 
-        remove_card = true
-        console.log(card_type, "swipe_left")
+        keep_card(card);
       } else {
-        remove_card = true
-        console.log(card_type, "swipe_right")
+        loot_card(card);
       }
     }
 
     if(remove_card){
-      if ($(this).is(':last-child')) {
+      if ($(card).is(':last-child')) {
         game_over()
       } else {
         setTimeout(function() {
@@ -308,6 +329,26 @@ $(document).ready(function() {
 
   }
 
+  function keep_card() {
+
+  }
+
+  function loot_card(card) {
+      var value = get_card_value(
+        $(card).attr('id')
+      )
+      player.loot = player.loot + parseInt(value)
+      update_player(player)
+  }
+
+  var swiperight = function() {
+    card_swipe(this,$('#card-deck .card').first().next(), false)
+  }
+
+  var swipeleft = function() {
+    card_swipe(this,$('#card-deck .card').first().next(), true)
+  }
+
   /* CARD ANIMATIONS */
   function card_animation(card, animation){
     animationName = 'animated '+animation
@@ -318,14 +359,6 @@ $(document).ready(function() {
   }
 
 
-  var swiperight = function() {
-    card_swipe(this,$('#card-deck .card').first().next(), false)
-  };
-
-  var swipeleft = function() {
-    card_swipe(this,$('#card-deck .card').first().next(), true)
-  };
-
   // PLAY GAME
   $("#play-game").on("click", play_game)
 
@@ -334,6 +367,7 @@ $(document).ready(function() {
     reset_player()
     build_deck()
     shuffle()
+    console.log(card_deck)
     
     first_card = $('#card-deck :first-child')
     card_animation(first_card, 'flipInX')
