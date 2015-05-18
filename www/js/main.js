@@ -90,7 +90,6 @@ $(document).ready(function() {
   }
 
   function set_equipment_image (image, type){
-    console.log(type,image,"set_equipment_image")
     $('#'+type).find('img').remove();
     $('#'+type).append("<img src="+image+">")
   }
@@ -104,7 +103,7 @@ $(document).ready(function() {
   function add_stat(name, value) {
     var block = "<div class='stat'>" +
       "<div class='stat-name'>" + name + "</div>" +
-      "<div class='stat-value' name='" + name + "'>" + value + "</div>" +
+      "<div class='stat-value' id='" + name + "'>" + value + "</div>" +
       "</div>"
     return block
   }
@@ -118,20 +117,21 @@ $(document).ready(function() {
     return block
   }
 
-  function card_deck_add(card){
-    card_deck[card.id] = card;
+  function card_deck_add(card,type){
+    card.type = type
+    card_deck[card.id] = card
   }
 
   function add_card_monster(monster) {
 
-    card_deck_add(monster)
+    card_deck_add(monster, 'monster')
 
     // Add a card to the deck named after the monster
     $('#card-deck').append('<div class="card"' +
-      ' id=' + monster.name +
+      ' id=' + monster.id +
       ' card-type="monster">')
 
-    var monster_card = $('#' + monster.name)
+    var monster_card = $('#' + monster.id)
 
     // Add background
     if (monster.background) {
@@ -167,7 +167,7 @@ $(document).ready(function() {
 
   function add_card_armor(armor) {
 
-    card_deck_add(armor)
+    card_deck_add(armor, 'armor')
 
     // Add a card to the deck named after the monster
     $('#card-deck').append('<div class="card"' +
@@ -210,7 +210,7 @@ $(document).ready(function() {
 
   function add_card_weapon(weapon) {
 
-    card_deck_add(weapon)
+    card_deck_add(weapon, 'weapon')
 
     // Add a card to the deck named after the monster
     $('#card-deck').append('<div class="card"' +
@@ -260,9 +260,9 @@ $(document).ready(function() {
 
     card_deck = {}
 
-    // for (i in monsters) {
-    //   add_card_monster(monsters[i])
-    // }
+    for (i in monsters) {
+      add_card_monster(monsters[i])
+    }
     for (i in armor) {
       add_card_armor(armor[i])
     }
@@ -296,31 +296,47 @@ $(document).ready(function() {
     }
   }
 
-  function get_card_value(card){
-    card_id = $(card).attr('id');
-    return card_deck[card_id].value
+  function get_card_attr(card,attr){
+    card_id = $(card).attr('id')
+    t = card_deck[card_id]
+    return t[attr]
   }
 
-  function get_card_image(card){
-    card_id = $(card).attr('id');
-    return card_deck[card_id].image
-  }
+  function do_combat(card_id, player) {
 
-  function get_card_type(card){
-    return $(card).attr('card-type');
-  }
+    card = card_deck[card_id]
+    // player attack
+    damage = 0;
+    if (player.attack > card.defense) {
+      damage = Math.abs(parseInt(player.attack) - parseInt(card.defense))
+    } 
+    card.health = parseInt(card.health) - damage
+    card_deck[card_id] = card
+    card_div = $('#'+card.id+' #health').html(card.health)
 
+    if (card.health < 1 ) {
+      return true
+    }
+
+    if (parseInt(player.health) < 1) {
+      game_over()
+    }
+    if (card.health > 0){
+      // attack player 
+    }
+
+  }
 
   function card_swipe (card, next_card, swipe_left){
     
     var remove_card = true
     var card_type = $(card).attr('card-type')
+    var card_id = $(card).attr('id')
 
     if(card_type == 'monster') {
       if(swipe_left){ 
-        // Fight
-        card_animation(card, 'tada fight')
-        remove_card = false
+        card_animation(card, 'tada')
+        remove_card = do_combat(card_id, player)
       } else {
         // Run Away
         card_animation(card, 'zoomOutRight')
@@ -352,14 +368,24 @@ $(document).ready(function() {
     card_animation(card, 'slideOutUp rotate-right')
 
     set_equipment_image(
-      get_card_image(card),
-      get_card_type(card)
+      get_card_attr(card,'image'),
+      get_card_attr(card,'type')
     )
+
+    switch(get_card_attr(card,'type')) {
+      case "weapon":
+        player.attack = 1 + parseInt(get_card_attr(card,'attack'))
+        break
+      case "armor":
+        player.defense = 0 + parseInt(get_card_attr(card,'defense'))
+        break
+    } 
+    update_player(player)
   }
 
   function loot_card(card) {
       card_animation(card, 'slideOutDown rotate-left')
-      var value = get_card_value(card)
+      var value = get_card_attr(card,'value')
       player.loot = player.loot + parseInt(value)
       update_player(player)
   }
@@ -374,7 +400,7 @@ $(document).ready(function() {
 
   /* CARD ANIMATIONS */
   function card_animation(card, animation){
-    animationName = 'animated fadeOut '+animation
+    animationName = 'animated '+animation
     $(card).show()
     $(card).addClass(animationName)
       .one(animationEnd, 
@@ -399,6 +425,7 @@ $(document).ready(function() {
 
     $(".card").on("swiperight", swiperight)
     $(".card").on("swipeleft", swipeleft)
+
   }
 
 });
