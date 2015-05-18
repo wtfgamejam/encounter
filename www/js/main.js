@@ -75,7 +75,7 @@ $(document).ready(function() {
     switch(card_type) {
       case "monster":
         hint_left = "Fight!";
-        hint_right = "Run Away!";
+        hint_right = "Run!";
         break
       case "weapon":
         break
