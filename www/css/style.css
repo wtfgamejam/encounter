@@ -15,7 +15,7 @@
 
 .card-deck {
   display: block;
-  border-radius: 5px;
+  border-radius: 20px;
   color: #fff;
   width: 344px;
   height: 484px;
@@ -227,7 +227,6 @@
   top: 608px;
   left: 50px;
   position: absolute;
-  background: red;
 }
 
 .hint {
@@ -237,30 +236,4 @@
   height: 30px;
   vertical-align: middle;
   font-size: 1.2em;
-}
-
-.xfight {
-  border-radius: 5px;
-  padding: 5px 10px;
-  border: 2px solid green;
-  color: green;
-  text-transform: uppercase;
-  font-size: 15px;
-  position: absolute;
-  top: 50px;
-  right: 40px;
-  text-shadow: none;
-}
-
-.xrun-away {
-  border-radius: 5px;
-  padding: 5px 10px;
-  border: 2px solid red;
-  color: red;
-  text-transform: uppercase;
-  font-size: 15px;
-  position: absolute;
-  top: 50px;
-  left: 40px;
-  text-shadow: none;
 }

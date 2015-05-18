@@ -52,12 +52,10 @@ $(document).ready(function() {
   /* PLAYER FUNCTIONS */
 
   function reset_player (player) {
-    player = {
-      "health"  : 11,
-      "defense" : 2,
-      "attack"  : 2,
-      "loot"    : 1
-    }
+    player.health = parseInt(10)
+    player.defense = parseInt(0)
+    player.attack = parseInt(1)
+    player.loot = parseInt(0)
   }
 
   /* UPDATE FUNCTIONS */
@@ -89,6 +87,12 @@ $(document).ready(function() {
     $('#hint-left').html(hint_left)
     $('#hint-right').html(hint_right)
 
+  }
+
+  function set_equipment_image (image, type){
+    console.log(type,image,"set_equipment_image")
+    $('#'+type).find('img').remove();
+    $('#'+type).append("<img src="+image+">")
   }
 
   function game_over () {
@@ -211,7 +215,7 @@ $(document).ready(function() {
     // Add a card to the deck named after the monster
     $('#card-deck').append('<div class="card"' +
       ' id=' + weapon.id +
-      ' card-type="armor">')
+      ' card-type="weapon">')
 
     var weapon_card = $('#' + weapon.id)
 
@@ -247,14 +251,18 @@ $(document).ready(function() {
       '</div>')
   }
 
-  function build_deck() {
+  function build_deck(card_deck) {
+
+    // Nuke Deck
     $('.card').each(function () {
       $(this).remove()
     })
 
-    for (i in monsters) {
-      add_card_monster(monsters[i])
-    }
+    card_deck = {}
+
+    // for (i in monsters) {
+    //   add_card_monster(monsters[i])
+    // }
     for (i in armor) {
       add_card_armor(armor[i])
     }
@@ -288,8 +296,18 @@ $(document).ready(function() {
     }
   }
 
-  function get_card_value(card_id){
+  function get_card_value(card){
+    card_id = $(card).attr('id');
     return card_deck[card_id].value
+  }
+
+  function get_card_image(card){
+    card_id = $(card).attr('id');
+    return card_deck[card_id].image
+  }
+
+  function get_card_type(card){
+    return $(card).attr('card-type');
   }
 
 
@@ -309,34 +327,39 @@ $(document).ready(function() {
       }
     } else{
       if(swipe_left){ 
-        keep_card(card);
+        equip_card(card);
       } else {
         loot_card(card);
       }
     }
 
     if(remove_card){
-      if ($(card).is(':last-child')) {
-        game_over()
-      } else {
-        setTimeout(function() {
+      setTimeout(function() {
+        if ($(card).is(':last-child')) {
+          $('#card-deck .card').first().hide().remove()
+          game_over()
+        } else {
           $('#card-deck .card').first().hide().remove()
           card_animation(next_card, 'flipInX')
           update_hints()
-        }, 500)
-      }
+        }
+      }, 1000)
     }
 
   }
 
-  function keep_card() {
+  function equip_card(card) {
+    card_animation(card, 'slideOutUp rotate-right')
 
+    set_equipment_image(
+      get_card_image(card),
+      get_card_type(card)
+    )
   }
 
   function loot_card(card) {
-      var value = get_card_value(
-        $(card).attr('id')
-      )
+      card_animation(card, 'slideOutDown rotate-left')
+      var value = get_card_value(card)
       player.loot = player.loot + parseInt(value)
       update_player(player)
   }
@@ -351,7 +374,7 @@ $(document).ready(function() {
 
   /* CARD ANIMATIONS */
   function card_animation(card, animation){
-    animationName = 'animated '+animation
+    animationName = 'animated fadeOut '+animation
     $(card).show()
     $(card).addClass(animationName)
       .one(animationEnd, 
@@ -364,10 +387,9 @@ $(document).ready(function() {
 
   function play_game () {
     
-    reset_player()
-    build_deck()
-    shuffle()
-    console.log(card_deck)
+    reset_player(player)
+    build_deck(card_deck)
+    shuffle(card_deck)
     
     first_card = $('#card-deck :first-child')
     card_animation(first_card, 'flipInX')
