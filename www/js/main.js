@@ -251,6 +251,49 @@ $(document).ready(function() {
       '</div>')
   }
 
+  function add_card_magic(magic) {
+
+    card_deck_add(magic, 'magic')
+
+    // Add a card to the deck named after the monster
+    $('#card-deck').append('<div class="card"' +
+      ' id=' + magic.id +
+      ' card-type="magic">')
+
+    var magic_card = $('#' + magic.id)
+
+    // Add background
+    if (magic.background) {
+      magic_card.css('background-image',"url('"+magic.background+"')")
+    }
+
+    // Top Label
+    magic_card.append(
+      '<div class="card-name">' +
+      magic.name +
+      '</div>')
+
+    // Image
+    magic_card.append(
+      add_avatar(magic.image))
+
+    // Stats
+    magic_card.append(
+      '<div class="card-stats">')
+
+    magic_card.find(".card-stats").append(
+      add_stat("attack", magic.attack),
+      add_stat("durability", magic.durability),
+      add_stat("value", magic.value)
+    )
+
+    // Description
+    magic_card.append(
+      '<div class="card-description">'+
+      magic.description+
+      '</div>')
+  }
+
   function build_deck(card_deck) {
 
     // Nuke Deck
@@ -268,6 +311,9 @@ $(document).ready(function() {
     }
     for (i in weapons) {
       add_card_weapon(weapons[i])
+    }
+    for (i in magic) {
+      add_card_magic(magic[i])
     }
   }
 
