@@ -1,3 +1,3 @@
-"id","name","description","level","defense","durability","value","image"
-"armor-1","Stinky Boots","Some stinky old boots",1,1,1,2,"assets/armor/stinkyboots.png"
-"armor-2","Magic Armor","It Glows!",2,3,4,10,"assets/armor/magicarmor.png"
+"id","name","description","level","defense","durability","value","image","background"
+"armor-1","Stinky Boots","Some stinky old boots",1,1,1,2,"assets/armor/stinkyboots.png","assets/card_background/green_entry.png"
+"armor-2","Magic Armor","It Glows!",2,3,4,10,"assets/armor/magicarmor.png","assets/card_background/green_entry.png"

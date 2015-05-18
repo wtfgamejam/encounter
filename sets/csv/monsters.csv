@@ -1,4 +1,4 @@
 "name","description","level","health","defense","attack","image","background"
-"Swifticorn","Taylor Swift as a Unicorn",1,3,2,3,"assets/monster/swiftacorn.png","assets/card_background/red_pillars.png"
+"Swifticorn","Taylor Swift, but a Unicorn",1,3,2,3,"assets/monster/swiftacorn.png","assets/card_background/red_pillars.png"
 "Door","You wish you had a key",3,3,1,0,"assets/monster/door.png","assets/card_background/red_pillars.png"
 "Goblin","He seems nice.",1,2,3,4,"assets/monster/goblin.png","assets/card_background/red_pillars.png"

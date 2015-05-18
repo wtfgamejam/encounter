@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+  var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+
   /* SETUP */
   function load_data(file) {
     var json = null;
@@ -269,80 +271,76 @@ $(document).ready(function() {
 
   function card_swipe (card, next_card, swipe_left){
     
-    var remove_card = false;
-    var card_type = $(card).attr('card-type');
+    var remove_card = false
+    var card_type = $(card).attr('card-type')
 
     if(card_type == 'monster') {
       if(swipe_left){ 
-        // Fight
-        $(card).addClass('animated tada fight');
-        setTimeout(function() {
-          $(card).removeClass('animated tada fight');
-        }, 1000);
-
+        card_animation(card, 'tada fight')
       } else {
         // Run Away
-        $(card).addClass('animated zoomOutRight');
-        setTimeout(function() {
-          $(card).removeClass('animated zoomOutRight');
-        }, 1000);
-        remove_card = true;
+        card_animation(card, 'zoomOutRight')
+        remove_card = true
       }
     } else{
       if(swipe_left){ 
-        remove_card = true;
-        console.log(card_type, "swipe_left");
+        remove_card = true
+        console.log(card_type, "swipe_left")
       } else {
-        remove_card = true;
-        console.log(card_type, "swipe_right");
+        remove_card = true
+        console.log(card_type, "swipe_right")
       }
     }
 
     if(remove_card){
       if ($(this).is(':last-child')) {
-        game_over();
+        game_over()
       } else {
         setTimeout(function() {
-          $('#card-deck .card').first().hide().remove();
-          $(next_card).addClass('animated flipInY').show();
-          setTimeout(function() {
-            $(next_card).removeClass('animated flipInY').show();
-          },1000);
-          update_hints();
-        }, 500);
+          $('#card-deck .card').first().hide().remove()
+          card_animation(next_card, 'flipInX')
+          update_hints()
+        }, 500)
       }
     }
 
   }
 
+  /* CARD ANIMATIONS */
+  function card_animation(card, animation){
+    animationName = 'animated '+animation
+    $(card).show()
+    $(card).addClass(animationName)
+      .one(animationEnd, 
+        function () { $(card).removeClass(animationName) })
+  }
+
+
   var swiperight = function() {
-    card_swipe(this,$('#card-deck .card').first().next(), false);
+    card_swipe(this,$('#card-deck .card').first().next(), false)
   };
 
   var swipeleft = function() {
-    card_swipe(this,$('#card-deck .card').first().next(), true);
+    card_swipe(this,$('#card-deck .card').first().next(), true)
   };
 
   // PLAY GAME
-  $("#play-game").on("click", play_game);
+  $("#play-game").on("click", play_game)
 
   function play_game () {
     
-    reset_player();
-    build_deck();
-    shuffle(); 
+    reset_player()
+    build_deck()
+    shuffle()
     
-    first_card = $('#card-deck :first-child');
-    first_card.addClass('animated flipInY').show();
-    
-    setTimeout(function (){
-        first_card.removeClass('animated flipInY');}, 1000);
+    first_card = $('#card-deck :first-child')
+    card_animation(first_card, 'flipInX')
 
-    update_player(player);
-    update_hints();
+    update_player(player)
+    update_hints()
 
-    $(".card").on("swiperight", swiperight);
-    $(".card").on("swipeleft", swipeleft);
+    $(".card").on("swiperight", swiperight)
+    $(".card").on("swipeleft", swipeleft)
   }
 
 });
