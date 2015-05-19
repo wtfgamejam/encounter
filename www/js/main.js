@@ -17,6 +17,12 @@ $(document).ready(function() {
     })
     return json
   }
+  
+  var weapons = {}
+  var monsters = {}
+  var magic = {}
+  var armor = {}
+  var card_deck = {}
 
   var player = {
     "health"  : 10,
@@ -24,12 +30,6 @@ $(document).ready(function() {
     "attack"  : 1,
     "loot"    : 0
   }
-
-  var weapons = load_data("weapons")
-  var monsters = load_data("monsters")
-  var magic = load_data("magic")
-  var armor = load_data("armor")
-  var card_deck = {}
   
   function shuffle(){
     $("#card-deck").each(function(){
@@ -155,9 +155,10 @@ $(document).ready(function() {
       '<div class="card-stats">')
 
     monster_card.find(".card-stats").append(
-      add_stat("health", monster.health),
       add_stat("attack", monster.attack),
-      add_stat("defense", monster.defense)
+      add_stat("health", monster.health),
+      add_stat("defense", monster.defense),
+      add_stat("loot", monster.value)
     )
 
     // Description
@@ -285,7 +286,7 @@ $(document).ready(function() {
 
     magic_card.find(".card-stats").append(
       add_stat("attack", magic.attack),
-      add_stat("durability", magic.durability),
+      add_stat("uses", magic.uses),
       add_stat("value", magic.value)
     )
 
@@ -478,6 +479,12 @@ $(document).ready(function() {
 
   function play_game () {
     
+    weapons = load_data("weapons")
+    monsters = load_data("monsters")
+    magic = load_data("magic")
+    armor = load_data("armor")
+    card_deck = {}
+
     set_equipment_image(false,'armor')
     set_equipment_image(false,'weapon')
     set_equipment_image(false,'magic')

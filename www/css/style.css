@@ -63,20 +63,6 @@
   padding-left: 10px;
 }
 
-.stat-name {
-  display: inline-block;
-  width: 100px;
-  text-align: right;
-  text-transform: capitalize;
-}
-
-.stat-value {
-  display: inline-block;
-  width: 100px;
-  padding-left: 20px;
-  text-align: left;
-}
-
 .card {
   background: #a00;
   display: none;
@@ -91,6 +77,45 @@
   z-index: 2;
   background-position: center;
   background-size: 340px 480px;
+}
+
+.card-stats {
+  background: rgba(0,0,0,0.75);
+  width: 300px;
+  height: 80;
+  display: inline-block;
+  text-align: center;
+  margin-top: 4px;
+  margin-left: 20px;
+  background-size: 100% auto !important;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 2px solid black;
+}
+
+.stat {
+  display: inline-block;
+  font-style: 1em;
+  width: 100px;
+  height: 40px;
+}
+
+.stat-name {
+/*  border-top: 1px solid #323232;*/
+  display: inline-block;
+  text-transform: capitalize;
+  width: 90px;
+  color: #CFCFCF;
+  font-style: normal;
+  font-size: 0.5em;
+  text-shadow: none;
+  padding-top: 2px;
+}
+
+.stat-value {
+  display: inline-block;
+  width: 90px;
+  text-shadow: none;
 }
 
 .fight {
@@ -146,13 +171,17 @@
 }
 
 .card-description {
+  background: black;
   display: inline-block;
   text-align: center;
   margin-bottom: 4px;
   margin-top: 2px;
-  margin-left: 20px;
-  width: 300px;
+  /*margin-left: 20px;*/
+  width: 340px;
   font-style: italic;
+  position: absolute;
+  top: 456px;
+  right: 0px;
 }
 
 .rotate-left {
@@ -176,24 +205,6 @@
   text-align: center;
   width: 100%;
   background: rgba(0,0,0,0.65);
-}
-
-.card-stats {
-  background: rgba(0,0,0,0.75);
-  width: 294px;
-  height: 80;
-  display: block;
-  text-align: center;
-  margin-top: 14px;
-  margin-left: 20px;
-  background-size: 100% auto !important;
-  background-position: center;
-  background-repeat: no-repeat;
-  border: 2px solid black;
-}
-
-.stat {
-  font-size: 1.2em;
 }
 
 .avatar {
