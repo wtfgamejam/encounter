@@ -87,6 +87,15 @@ $(document).ready(function() {
     $('#hint-left').html(hint_left)
     $('#hint-right').html(hint_right)
 
+    setTimeout(function (){
+      $('.hints').show()
+      $('#hint-left').addClass('animated fadeInRight').show()
+      $('#hint-right').addClass('animated fadeInLeft').show()
+      setTimeout(function (){
+        $('#hint-left').removeClass('animated fadeInRight')
+        $('#hint-right').removeClass('animated fadeInLeft')
+      },1000)
+    },1000)
   }
 
   function set_equipment_image (image, type){
@@ -98,6 +107,7 @@ $(document).ready(function() {
 
   function game_over (message) {
     window.alert(message)
+    $('.play-button').hide()
   }
 
   /* CARD CONSTRUCTION FUNCTIONS */
@@ -457,10 +467,12 @@ $(document).ready(function() {
   }
 
   var swiperight = function() {
+    $('.hints').fadeOut();
     card_swipe(this,$('#card-deck .card').first().next(), false)
   }
 
   var swipeleft = function() {
+    $('.hints').fadeOut();
     card_swipe(this,$('#card-deck .card').first().next(), true)
   }
 
@@ -479,6 +491,13 @@ $(document).ready(function() {
 
   function play_game () {
     
+    $('.play-button').hide()
+    $('.high-scores').fadeOut();
+    $('.high-scores-header').fadeOut();
+    card_animation($('.items'), "fadeInDown")
+    card_animation($('.player-stats'), "fadeInUp")
+
+
     weapons = load_data("weapons")
     monsters = load_data("monsters")
     magic = load_data("magic")
@@ -501,6 +520,9 @@ $(document).ready(function() {
 
     $(".card").on("swiperight", swiperight)
     $(".card").on("swipeleft", swipeleft)
+    $(".card").on("click", function() { 
+      update_hints() 
+    })
 
   }
 

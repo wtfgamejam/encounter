@@ -13,8 +13,15 @@
 
 <body>
   <div id="container">
+    <div class="play-button">
+      <button id="play-game">Play Game</button>
+    </div>
+    <div class="high-scores-header">High Scores</div>
+
     <!-- Player Items -->
-    <div class="items">
+    
+
+    <div class="items" style="display: none;">
       <div class="item" id="armor">
         <div class="item-label">armor</div>
       </div>
@@ -26,27 +33,25 @@
       </div>
     </div>
     <!-- Card Deck -->
+    <div id="high-scores" class="high-scores"></div>
     <div id="card-deck" class="card-deck"><div class="card"></div></div>
     <div class="hints">
-      <div class="hint" id="hint-left">Hint Left</div>
-      <div class="hint" id="hint-right">Hint Right</div>
+      <div class="hint" id="hint-left" style="display: none;">Hint Left</div>
+      <div class="hint" id="hint-right" style="display: none;">Hint Right</div>
     </div>
     <!-- Player Stats -->
-    <div class="player-stats">
-      <div class="player-header">Player</div>
-      <div class="player-stat-label">Attack</div>
-      <div class="player-stat" id="player-attack"></div>
-      <div class="player-stat-label">Defense</div>
-      <div class="player-stat" id="player-defense"></div>
-      <div class="player-stat-label">Health</div>
+    <div class="player-stats" style="display: none;">
+      <div class="player-stat-icon" style="background-image: url('assets/icons/health.png');"></div>
+      <div class="player-stat-icon" style="background-image: url('assets/icons/attack.png');"></div>
+      <div class="player-stat-icon" style="background-image: url('assets/icons/defense.png');"></div>
+      <div class="player-stat-icon" style="background-image: url('assets/icons/loot.png');"></div>
       <div class="player-stat" id="player-health"></div>
-      <div class="player-stat-label">Loot</div>
+      <div class="player-stat" id="player-attack"></div>
+      <div class="player-stat" id="player-defense"></div>
       <div class="player-stat" id="player-loot"></div>
     </div>
-
   </div>
   <!-- container -->
-  <input type="submit" value="Play Game" id="play-game">
 </body>
 
 </html>
