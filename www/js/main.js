@@ -107,7 +107,13 @@ $(document).ready(function() {
 
   function game_over (message) {
     window.alert(message)
-    $('.play-button').hide()
+    $('.items').fadeOut()
+    $('.player-stats').fadeOut()
+    $('.card-deck').fadeOut()
+    $('.high-scores-header').fadeIn()
+    $('.play-button').fadeIn()
+    $('.high-scores').fadeIn()
+    $('.high-score-header').fadeIn()
   }
 
   /* CARD CONSTRUCTION FUNCTIONS */
@@ -432,7 +438,7 @@ $(document).ready(function() {
           game_over("You escaped the dungeon!\n Loot:"+ player.loot)
         } else {
           $('#card-deck .card').first().hide().remove()
-          card_animation(next_card, 'flipInX')
+          card_animation(next_card, 'flipInY')
           update_hints()
         }
       }, 1000)
@@ -492,8 +498,10 @@ $(document).ready(function() {
   function play_game () {
     
     $('.play-button').hide()
-    $('.high-scores').fadeOut();
-    $('.high-scores-header').fadeOut();
+    $('.high-scores').hide()
+    $('.high-scores-header').hide()
+    $('.card-deck').show()
+    console.log("hi!")
     card_animation($('.items'), "fadeInDown")
     card_animation($('.player-stats'), "fadeInUp")
 
@@ -513,7 +521,7 @@ $(document).ready(function() {
     shuffle(card_deck)
     
     first_card = $('#card-deck :first-child')
-    card_animation(first_card, 'flipInX')
+    card_animation(first_card, 'zoomInUp')
 
     update_player(player)
     update_hints()
