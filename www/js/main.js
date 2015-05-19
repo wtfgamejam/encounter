@@ -91,7 +91,9 @@ $(document).ready(function() {
 
   function set_equipment_image (image, type){
     $('#'+type).find('img').remove();
-    $('#'+type).append("<img src="+image+">")
+    if (image){
+      $('#'+type).append("<img src="+image+">")
+    }
   }
 
   function game_over (message) {
@@ -391,13 +393,15 @@ $(document).ready(function() {
 
     if(card_type == 'monster') {
       if(swipe_left){ 
+        // FIght
         card_animation(card, 'tada')
         remove_card = do_combat(card_id, player)
       } else {
         // Run Away
         card_animation(card, 'zoomOutRight')
       }
-    } else{
+
+    } else {
       if(swipe_left){ 
         equip_card(card);
       } else {
@@ -469,9 +473,9 @@ $(document).ready(function() {
 
   function play_game () {
     
-    set_equipment_image('','armor')
-    set_equipment_image('','weapon')
-    set_equipment_image('','magic')
+    set_equipment_image(false,'armor')
+    set_equipment_image(false,'weapon')
+    set_equipment_image(false,'magic')
 
     reset_player(player)
     build_deck(card_deck)
