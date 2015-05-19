@@ -369,7 +369,12 @@ $(document).ready(function() {
     card_div = $('#'+card.id+' #health').html(card.health)
 
     // Card is dead
-    if (card.health < 1 ) { return true }
+    if (card.health < 1 ) { 
+      // Loot that body!
+      player.loot = parseInt(player.loot) + parseInt(card.value)
+      update_player(player)
+      return true 
+    }
 
     // Card lives. Attacks.
     if (parseInt(card.attack) > parseInt(player.defense)) {
