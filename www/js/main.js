@@ -5,7 +5,7 @@ $(document).ready(function() {
   /* SETUP */
   function load_data(file) {
     var json = null
-    url = "../sets/json/" + file + ".json"
+    url = "data/" + file + ".json"
     $.ajax({
       'async': false,
       'global': false,
@@ -110,6 +110,7 @@ $(document).ready(function() {
     $('.items').fadeOut()
     $('.player-stats').fadeOut()
     $('.card-deck').fadeOut()
+    $('.hints').fadeOut()
     $('.high-scores-header').fadeIn()
     $('.play-button').fadeIn()
     $('.high-scores').fadeIn()
@@ -447,7 +448,7 @@ $(document).ready(function() {
   }
 
   function equip_card(card) {
-    card_animation(card, 'slideOutUp rotate-right')
+    card_animation(card, 'rotate-right')
 
     set_equipment_image(
       get_card_attr(card,'image'),
@@ -466,7 +467,7 @@ $(document).ready(function() {
   }
 
   function loot_card(card) {
-      card_animation(card, 'slideOutDown rotate-left')
+      card_animation(card, 'rotate-left')
       var value = get_card_attr(card,'value')
       player.loot = player.loot + parseInt(value)
       update_player(player)
@@ -501,6 +502,7 @@ $(document).ready(function() {
     $('.high-scores').hide()
     $('.high-scores-header').hide()
     $('.card-deck').show()
+    $('.hints').show()
   
     card_animation($('.items'), "fadeInDown")
     card_animation($('.player-stats'), "fadeInUp")

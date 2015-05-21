@@ -169,7 +169,7 @@ html, body {
 }
 
 .item#armor {
-  background-image: url('../assets/card_background/green_entry.png');
+    background-image: url('../assets/card_background/green_entry.png');
 }
 
 .item#weapon {

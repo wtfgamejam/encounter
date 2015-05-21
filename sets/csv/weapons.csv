@@ -1,4 +1,6 @@
 "id","name","description","level","attack","durability","value","image","background"
 "weapon-1","Sharp Stick","Watch the pointy end.",1,1,1,2,"assets/weapon/pointystick.png","assets/card_background/yellow_fort.png"
-"weapon-2","Ice Sword","It Glows!",2,3,4,10,"assets/weapon/magicsword.png","assets/card_background/yellow_fort.png"
-"weapon-3","Magic Sword","It Glows!",2,3,4,10,"assets/weapon/magicsword.png","assets/card_background/yellow_fort.png"
+"weapon-2","Ice Sword","Feezing!",2,3,4,50,"assets/weapon/magicsword.png","assets/card_background/yellow_fort.png"
+"weapon-3","Storm Sword","Crackling with power!",3,4,3,40,"assets/weapon/stormblade.png","assets/card_background/yellow_fort.png"
+"weapon-4","Cursed Sword","Crackling with power!",4,4,3,120,"assets/weapon/cursedblade.png","assets/card_background/yellow_fort.png"
+"weapon-5","Fire Sword","Burning!",2,3,3,80,"assets/weapon/fireblade.png","assets/card_background/yellow_fort.png"
