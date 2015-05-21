@@ -2,7 +2,7 @@
 
 ## A fantasy dungeon crawl card game with tinder mechanics.
 
-# Credits:
+# Credits
 
 - Mike Thorpe <mt@foo.ca> : Really terrible code.
 - David Hueso <dehuesoilustrator@gmail.com> : Amazing card art
