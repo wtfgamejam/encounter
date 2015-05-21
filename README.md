@@ -1,4 +1,12 @@
-# that_card_thing
+# Encounter
+
+## A fantasy dungeon crawl card game with tinder mechanics.
+
+Credits:
+
+Mike Thorpe <mt@foo.ca> : Really terrible code.
+David Hueso <dehuesoilustrator@gmail.com> : Amazing card art
+Erik Keaskin : The Swifticorn!
 
 # Things that work
 
@@ -11,3 +19,4 @@
 
 - Magic: Magic does nothing.
 - Durability: Weapons don't decay yet.
+- High Scores
