@@ -1,3 +1,4 @@
 "id","name","description","level","attack","durability","value","image","background"
 "weapon-1","Sharp Stick","Watch the pointy end.",1,1,1,2,"assets/weapon/pointystick.png","assets/card_background/yellow_fort.png"
-"weapon-2","Magic Sword","It Glows!",2,3,4,10,"assets/weapon/magicsword.png","assets/card_background/yellow_fort.png"
+"weapon-2","Ice Sword","It Glows!",2,3,4,10,"assets/weapon/magicsword.png","assets/card_background/yellow_fort.png"
+"weapon-3","Magic Sword","It Glows!",2,3,4,10,"assets/weapon/magicsword.png","assets/card_background/yellow_fort.png"

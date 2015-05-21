@@ -501,7 +501,7 @@ $(document).ready(function() {
     $('.high-scores').hide()
     $('.high-scores-header').hide()
     $('.card-deck').show()
-    console.log("hi!")
+  
     card_animation($('.items'), "fadeInDown")
     card_animation($('.player-stats'), "fadeInUp")
 
