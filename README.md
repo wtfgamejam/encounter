@@ -4,9 +4,9 @@
 
 Credits:
 
-Mike Thorpe <mt@foo.ca> : Really terrible code.
-David Hueso <dehuesoilustrator@gmail.com> : Amazing card art
-Erik Keaskin : The Swifticorn!
+- Mike Thorpe <mt@foo.ca> : Really terrible code.
+- David Hueso <dehuesoilustrator@gmail.com> : Amazing card art
+- Erik Keaskin : The Swifticorn!
 
 # Things that work
 
