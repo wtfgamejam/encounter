@@ -115,6 +115,7 @@ $(document).ready(function() {
     $('.play-button').fadeIn()
     $('.high-scores').fadeIn()
     $('.high-score-header').fadeIn()
+    $('#credits').fadeIn()
   }
 
   /* CARD CONSTRUCTION FUNCTIONS */
@@ -503,6 +504,7 @@ $(document).ready(function() {
     $('.high-scores-header').hide()
     $('.card-deck').show()
     $('.hints').show()
+    $('#credits').fadeOut()
   
     card_animation($('.items'), "fadeInDown")
     card_animation($('.player-stats'), "fadeInUp")

@@ -323,3 +323,36 @@ button {
   background-repeat: no-repeat;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
+#credits {
+  display: block;
+  color: #fff;
+  width: 340px;
+  height: 480px;
+  top: 130px;
+  left: 50px;
+  position: absolute;
+  cursor: hand;
+  z-index: 0;
+  background: rgba(0,0,0,.5);
+  background-position: center;
+  background-size: 300px 440px;
+  background-repeat: no-repeat;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  vertical-align: middle;
+  margin-top: auto;
+  text-align: center;
+  text-shadow: none;
+}
+
+
+.credits-header {
+  color: #fff;
+  font-size: 2em;
+  padding-top: 40px;
+}
+
+.credits-name {
+  background: rgba(50,50,50,.5);
+  font-size: 1.5em;
+}
