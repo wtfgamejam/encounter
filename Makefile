@@ -8,3 +8,6 @@ json:
 
 clean:
 	rm -f www/data/*
+
+run:
+	python -M
